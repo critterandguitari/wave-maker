@@ -1,4 +1,4 @@
 wave-maker
 ==========
-python script to make wave tables using summation of sines
+python scripts to make 256 entry wave tables using summation of sines
 
