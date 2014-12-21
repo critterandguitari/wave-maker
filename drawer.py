@@ -41,7 +41,7 @@ def wave_shape(x):
 
 def single_shaped (i):
     x = math.sin((i / 256.0) * 2. * math.pi)
-    return wave_shape(x * 1)
+    return wave_shape(x)
 
 def seven_descending (i):
     sin1 = math.sin((i / 256.0) * 2. * math.pi) * .1
@@ -63,13 +63,24 @@ def seven_all_on (i):
     sin4 = math.sin((i / 256.0) * 2. * math.pi * 6.0)
     sin4 = math.sin((i / 256.0) * 2. * math.pi * 7.0)
     val = (sin1 + sin2 + sin3 + sin4) / 3
+    return wave_shape(val)
+    
+def one_five_oct(i) :
+    sin1 = math.sin((i / 256.0) * 2. * math.pi)
+    sin2 = math.sin((i / 256.0) * 2. * math.pi * 2.0)
+    sin3 = math.sin((i / 256.0) * 2. * math.pi * 3.0)
+    val = (sin1 + sin2 + sin3) / 3
     return val
+    
+
 
 # we go from -1 to 258 cause we need some bookends for the interpolation
 for i in range(-1,258):
     #val = seven_descending(i)
     #val = single_shaped(i)
-    val = seven_all_on(i)
+    #val = single(i)
+    #val = one_five_oct(i)
+    val = wave_shape(one_five_oct(i))
     
     # print it out
     print "{:.10f}".format(val) + "f, ",
