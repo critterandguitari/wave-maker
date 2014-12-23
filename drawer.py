@@ -43,27 +43,14 @@ def single_shaped (i):
     x = math.sin((i / 256.0) * 2. * math.pi)
     return wave_shape(x)
 
-def seven_descending (i):
-    sin1 = math.sin((i / 256.0) * 2. * math.pi) * .1
-    sin2 = math.sin((i / 256.0) * 2. * math.pi * 2.0) * .2
-    sin3 = math.sin((i / 256.0) * 2. * math.pi * 3.0) * .3
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 4.0) * .4
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 5.0) * .5
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 6.0) * .6
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 7.0) * .7
-    val = (sin1 + sin2 + sin3 + sin4) / 2.8
-    return val
-
-def seven_all_on (i):
+def five_all_on (i):
     sin1 = math.sin((i / 256.0) * 2. * math.pi)
-    sin2 = math.sin((i / 256.0) * 2. * math.pi * 2.0)
-    sin3 = math.sin((i / 256.0) * 2. * math.pi * 3.0)
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 4.0)
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 5.0)
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 6.0)
-    sin4 = math.sin((i / 256.0) * 2. * math.pi * 7.0)
-    val = (sin1 + sin2 + sin3 + sin4) / 3
-    return wave_shape(val)
+    sin2 = math.sin((i / 256.0) * 2. * math.pi * 2.0) * .8  # actually not quite all on
+    sin3 = math.sin((i / 256.0) * 2. * math.pi * 3.0) * .7
+    sin4 = math.sin((i / 256.0) * 2. * math.pi * 4.0) * .6
+    sin5 = math.sin((i / 256.0) * 2. * math.pi * 5.0) * .5
+    val = (sin1 + sin2 + sin3 + sin4 + sin5 ) / 3
+    return val
     
 def one_five_oct(i) :
     sin1 = math.sin((i / 256.0) * 2. * math.pi)
@@ -72,6 +59,25 @@ def one_five_oct(i) :
     val = (sin1 + sin2 + sin3) / 3
     return val
     
+def fake_square(i) :
+    sin1 = math.sin((i / 256.0) * 2. * math.pi)
+    sin2 = math.sin((i / 256.0) * 2. * math.pi * 3.0) / 3
+    sin3 = math.sin((i / 256.0) * 2. * math.pi * 5.0) / 5
+    sin4 = math.sin((i / 256.0) * 2. * math.pi * 7.0) / 7
+    sin5 = math.sin((i / 256.0) * 2. * math.pi * 9.0) / 9
+    val = (sin1 + sin2 + sin3 + sin4 + sin5)
+    return val
+    
+def fake_saw(i) :
+    sin1 = math.sin((i / 256.0) * 2. * math.pi)
+    sin2 = math.sin((i / 256.0) * 2. * math.pi * 2.0) / 2
+    sin3 = math.sin((i / 256.0) * 2. * math.pi * 3.0) / 3
+    sin4 = math.sin((i / 256.0) * 2. * math.pi * 4.0) / 4
+    sin5 = math.sin((i / 256.0) * 2. * math.pi * 5.0) / 5
+    sin6 = math.sin((i / 256.0) * 2. * math.pi * 6.0) / 6
+    sin7 = math.sin((i / 256.0) * 2. * math.pi * 7.0) / 7
+    val = (sin1 + sin2 + sin3 + sin4 + sin5 + sin6 + sin7) / 2
+    return val
 
 
 # we go from -1 to 258 cause we need some bookends for the interpolation
@@ -80,7 +86,10 @@ for i in range(-1,258):
     #val = single_shaped(i)
     #val = single(i)
     #val = one_five_oct(i)
-    val = wave_shape(one_five_oct(i))
+    #val = wave_shape(one_five_oct(i))
+    #val = fake_square(i)
+    #val = fake_saw(i)
+    val = five_all_on(i)
     
     # print it out
     print "{:.10f}".format(val) + "f, ",
